@@ -47,6 +47,7 @@
 		grid-row: 1;
 		overflow: hidden;
 		pointer-events: none;
+		z-index: -1;
 	}
 
 	.skyline {
