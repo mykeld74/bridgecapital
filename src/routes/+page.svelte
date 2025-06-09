@@ -1,6 +1,6 @@
 <script>
 	import { Skyline, Logo, LogoLetters } from '$images';
-	import Terms from '$components/Terms.svelte';
+	import { Terms, Cards, LeaderCarousel } from '$components';
 </script>
 
 <div class="hero">
@@ -29,6 +29,15 @@
 		<div class="termsContainer">
 			<Terms />
 		</div>
+	</div>
+</div>
+<div class="cards">
+	<Cards />
+</div>
+<div class="leaderCarousel">
+	<div class="leaderCarouselContainer">
+		<h2 class="leaderCarouselTitle">Meet Our Team</h2>
+		<LeaderCarousel />
 	</div>
 </div>
 
@@ -66,7 +75,7 @@
 		gap: 2rem;
 	}
 	.heroTitle {
-		font-size: clamp(2rem, 5.5vw, 4.5rem);
+		font-size: clamp(1.75rem, 5.5vw, 4.5rem);
 		font-weight: 500;
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 1);
 		margin: 0;
@@ -81,12 +90,18 @@
 		container-name: whoWeAre;
 		container-type: inline-size;
 	}
-	.whoWeAreTitle {
+	.whoWeAreTitle,
+	.leaderCarouselTitle {
 		font-size: clamp(2rem, 5.5vw, 3.5rem);
 		font-weight: 600;
 		text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.35);
 		margin: 0;
 		text-transform: uppercase;
+	}
+	.leaderCarouselTitle {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto 3rem;
 	}
 	.whoWeAreContent {
 		display: grid;
@@ -99,5 +114,9 @@
 		@container whoWeAre (width < 600px) {
 			grid-template-columns: 1fr;
 		}
+	}
+	.leaderCarousel {
+		padding: 4rem 0;
+		background-color: #fff;
 	}
 </style>

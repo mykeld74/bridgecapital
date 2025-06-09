@@ -15,3 +15,19 @@
 </svelte:head>
 
 {@render children()}
+
+<footer>
+	<div class="footerContainer">
+		<div class="footerContent">&copy; 2025 Bridge Capital. All rights reserved.</div>
+	</div>
+</footer>
+
+<style>
+	footer {
+		background-color: #12213e;
+		color: #fff;
+		padding: 20px;
+		text-align: right;
+		font-size: 0.8rem;
+	}
+</style>

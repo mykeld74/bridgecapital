@@ -1,3 +1,4 @@
+@import 'open-props/style';
 :root {
 	--colorPrimary: oklch(0.2526 0.0574 261.53);
 	--colorSecondary: oklch(0.8526 0.0574 261.53);
