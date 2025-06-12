@@ -92,7 +92,7 @@
 			overflow: clip;
 			opacity: 0;
 			transition: all 0.3s var(--ease-out-1);
-			transition-delay: 0.5s;
+			transition-delay: 0.15s;
 			@media (max-width: 768px) {
 				transition-delay: 0s;
 			}
@@ -143,7 +143,7 @@
 		}
 
 		> .description {
-			transition-delay: 0s;
+			transition-delay: 0.25s;
 			opacity: 1;
 			transform: translateX(0px);
 		}
