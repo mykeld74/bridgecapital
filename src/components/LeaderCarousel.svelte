@@ -32,8 +32,6 @@
 	const prevSlide = () => {
 		currentSlide = (currentSlide - 1 + slides.length) % slides.length;
 	};
-
-	$inspect('Current slide:', currentSlide);
 </script>
 
 <div class="carousel">

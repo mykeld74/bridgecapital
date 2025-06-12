@@ -1,11 +1,11 @@
 <script>
-	import { Skyline, Logo, LogoLetters } from '$images';
+	import { Skyline2, Logo, LogoLetters } from '$images';
 	import { Terms, Cards, LeaderCarousel } from '$components';
 </script>
 
 <div class="hero">
 	<div class="heroVideo">
-		<video src={Skyline} autoplay loop muted playsinline class="skyline"></video>
+		<video src={Skyline2} autoplay loop muted playsinline class="skyline"></video>
 	</div>
 	<div class="heroContent">
 		<div class="logoContainer"><img src={LogoLetters} alt="Bridge Capital Logo" /></div>
@@ -57,6 +57,15 @@
 		overflow: hidden;
 		pointer-events: none;
 		z-index: -1;
+		position: relative;
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 1;
+		}
 	}
 
 	.skyline {
