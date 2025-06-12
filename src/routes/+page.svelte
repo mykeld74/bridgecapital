@@ -1,11 +1,11 @@
 <script>
-	import { Skyline2, Logo, LogoLetters } from '$images';
+	import { Skyline, Logo, LogoLetters } from '$images';
 	import { Terms, Cards, LeaderCarousel } from '$components';
 </script>
 
 <div class="hero">
 	<div class="heroVideo">
-		<video src={Skyline2} autoplay loop muted playsinline class="skyline"></video>
+		<video src={Skyline} autoplay loop muted playsinline class="skyline"></video>
 	</div>
 	<div class="heroContent">
 		<div class="logoContainer"><img src={LogoLetters} alt="Bridge Capital Logo" /></div>
