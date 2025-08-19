@@ -32,6 +32,9 @@
 		]
 	},
 	"dependencies": {
-		"open-props": "^1.7.15"
+		"gsap": "^3.13.0",
+		"nodemailer": "^7.0.5",
+		"open-props": "^1.7.15",
+		"swiper": "^11.1.0"
 	}
 }

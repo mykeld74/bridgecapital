@@ -1,3 +1,54 @@
+<script>
+	import { gsap } from 'gsap';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		// Set initial state for all nodes
+		gsap.set('.termNode', { opacity: 0.85, scale: 1 });
+
+		// Create timeline for continuous animations
+		const tl = gsap.timeline({ repeat: -1 });
+
+		// Animate each node with staggered timing
+		const nodes = [
+			'.equityNode',
+			'.assetsNode',
+			'.valuationNode',
+			'.capitalNode',
+			'.dividendsNode'
+		];
+
+		nodes.forEach((node, index) => {
+			// Add animation for each node with staggered delay
+			tl.to(
+				node,
+				{
+					opacity: 1,
+					scale: 1.05,
+					duration: 2,
+					ease: 'power2.inOut'
+				},
+				index * 2
+			).to(
+				node,
+				{
+					opacity: 0.85,
+					scale: 1,
+					duration: 2,
+					ease: 'power2.inOut'
+				},
+				index * 2 + 2
+			);
+		});
+
+		// Set the timeline duration to match the total cycle time
+		tl.duration(10);
+
+		// Set the timeline to repeat infinitely
+		tl.repeat(-1);
+	});
+</script>
+
 <div class="termsContainer">
 	<svg
 		width="502"
@@ -44,52 +95,58 @@
 			/>
 			<g id="nodes">
 				<g class="equityNode termNode">
-					<path
-						id="Vector_7"
-						class="svgCircle circle1"
-						d="M113.5 235C142.495 235 166 211.495 166 182.5C166 153.505 142.495 130 113.5 130C84.5051 130 61 153.505 61 182.5C61 211.495 84.5051 235 113.5 235Z"
-						fill="#12213E"
-					/>
-					<text id="Equity" class="svgText"><tspan x="82.3574" y="189.273">Equity</tspan></text>
+					<circle class="svgCircle circle1" cx="113.5" cy="182.5" r="58.5" fill="#12213E" />
+					<text
+						id="Equity"
+						class="svgText"
+						x="113.5"
+						y="182.5"
+						text-anchor="middle"
+						dominant-baseline="middle">Impact</text
+					>
 				</g>
 				<g class="assetsNode termNode">
-					<path
-						id="Vector_8"
-						class="svgCircle circle2"
-						d="M133.5 473C162.495 473 186 449.495 186 420.5C186 391.505 162.495 368 133.5 368C104.505 368 81 391.505 81 420.5C81 449.495 104.505 473 133.5 473Z"
-						fill="#12213E"
-					/>
-					<text id="Assets" class="svgText"><tspan x="102.006" y="427.273">Assets</tspan></text>
+					<circle class="svgCircle circle2" cx="133.5" cy="420.5" r="58.5" fill="#12213E" />
+					<text
+						id="Assets"
+						class="svgText"
+						x="133.5"
+						y="420.5"
+						text-anchor="middle"
+						dominant-baseline="middle">Collaboration</text
+					>
 				</g>
 				<g class="valuationNode termNode">
-					<path
-						id="Vector_9"
-						class="svgCircle circle3"
-						d="M269.5 353C298.495 353 322 329.495 322 300.5C322 271.505 298.495 248 269.5 248C240.505 248 217 271.505 217 300.5C217 329.495 240.505 353 269.5 353Z"
-						fill="#12213E"
-					/>
-					<text id="Valuation" class="svgText"
-						><tspan x="224.113" y="308.273">Valuation</tspan></text
+					<circle class="svgCircle circle3" cx="269.5" cy="300.5" r="58.5" fill="#12213E" />
+					<text
+						id="Valuation"
+						class="svgText"
+						x="269.5"
+						y="300.5"
+						text-anchor="middle"
+						dominant-baseline="middle">Growth</text
 					>
 				</g>
 				<g class="capitalNode termNode">
-					<path
-						id="Vector_10"
-						class="svgCircle circle4"
-						d="M361.5 146C390.495 146 414 122.495 414 93.5C414 64.5051 390.495 41 361.5 41C332.505 41 309 64.5051 309 93.5C309 122.495 332.505 146 361.5 146Z"
-						fill="#12213E"
-					/>
-					<text id="Capital" class="svgText"><tspan x="328.215" y="99.2727">Capital</tspan></text>
+					<circle class="svgCircle circle4" cx="361.5" cy="93.5" r="58.5" fill="#12213E" />
+					<text
+						id="Capital"
+						class="svgText"
+						x="361.5"
+						y="93.5"
+						text-anchor="middle"
+						dominant-baseline="middle">Innovation</text
+					>
 				</g>
 				<g class="dividendsNode termNode">
-					<path
-						id="Vector_11"
-						class="svgCircle circle5"
-						d="M431 373C461.376 373 486 348.376 486 318C486 287.624 461.376 263 431 263C400.624 263 376 287.624 376 318C376 348.376 400.624 373 431 373Z"
-						fill="#12213E"
-					/>
-					<text id="Dividends" class="svgText"
-						><tspan x="384.589" y="327.273">Dividends</tspan></text
+					<circle class="svgCircle circle5" cx="431" cy="318" r="61" fill="#12213E" />
+					<text
+						id="Dividends"
+						class="svgText"
+						x="431"
+						y="318"
+						text-anchor="middle"
+						dominant-baseline="middle">Differentiation</text
 					>
 				</g>
 			</g>
@@ -98,85 +155,34 @@
 </div>
 
 <style>
-	@keyframes circleOpacity {
-		0% {
-			opacity: 0.85;
-		}
-		50% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0.85;
-		}
-	}
-	@keyframes circleScale {
-		0% {
-			transform: scale(1);
-		}
-		50% {
-			transform: scale(1.05);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
 	svg {
 		width: 100%;
 		height: auto;
 	}
 	.svgText {
 		font-family: 'Public Sans', sans-serif;
-		font-size: 20px;
+		font-size: 16px;
 		fill: #fff;
 	}
 	.svgCircle {
 		transition: opacity 0.3s ease-in-out;
-		opacity: 0.85;
 	}
 	.circle1 {
 		fill: #12213e;
-		animation: circleOpacity 2s ease-in-out;
 	}
 	.circle2 {
 		fill: #12213e;
-		animation: circleOpacity 2s ease-in-out;
-		animation-delay: 1.5s;
 	}
 	.circle3 {
 		fill: #12213e;
-		animation: circleOpacity 2s ease-in-out;
-		animation-delay: 3s;
 	}
 	.circle4 {
 		fill: #12213e;
-		animation: circleOpacity 2s ease-in-out;
-		animation-delay: 4.5s;
 	}
 	.circle5 {
 		fill: #12213e;
-		animation: circleOpacity 2s ease-in-out;
-		animation-delay: 6s;
 	}
 	.termNode {
 		transform-origin: center;
-	}
-	.equityNode {
-		animation: circleScale 2s ease-in-out;
-	}
-	.assetsNode {
-		animation: circleScale 2s ease-in-out;
-		animation-delay: 1.5s;
-	}
-	.valuationNode {
-		animation: circleScale 2s ease-in-out;
-		animation-delay: 3s;
-	}
-	.capitalNode {
-		animation: circleScale 2s ease-in-out;
-		animation-delay: 4.5s;
-	}
-	.dividendsNode {
-		animation: circleScale 2s ease-in-out;
-		animation-delay: 6s;
 	}
 </style>

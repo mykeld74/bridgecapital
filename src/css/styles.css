@@ -2,6 +2,10 @@
 :root {
 	--colorPrimary: oklch(0.2526 0.0574 261.53);
 	--colorSecondary: oklch(0.8526 0.0574 261.53);
+	--Radius: 20px;
+	--Surface: #0f1a2e;
+	--SurfaceAlt: #12213e;
+	--Accent: #2a7fff;
 }
 
 @font-face {

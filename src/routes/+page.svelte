@@ -1,7 +1,23 @@
 <script>
 	import { Skyline, Logo, LogoLetters } from '$images';
-	import { Terms, Cards, LeaderCarousel } from '$components';
+	import { Terms, Cards, LeaderCarousel, Leaders } from '$components';
 </script>
+
+<svelte:head>
+	<title>Bridge Capital</title>
+	<meta
+		name="description"
+		content="Bridge Capital is an aggregator of investment advisors that provides comprehensive wealth management services."
+	/>
+	<meta
+		name="keywords"
+		content="Bridge Capital, investment advisors, wealth management, financial planning, insurance, estate planning, family office services, alternative asset classes"
+	/>
+	<meta name="author" content="Bridge Capital" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
+</svelte:head>
 
 <div class="hero">
 	<div class="heroVideo">
@@ -17,13 +33,23 @@
 <div class="whoWeAre whiteBg">
 	<div class="whoWeAreContent">
 		<div class="whoWeAreTextContainer">
-			<h2 class="whoWeAreTitle">Who We Are</h2>
+			<h2 class="whoWeAreTitle">About Us</h2>
 			<p class="whoWeAreText">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet tellus cras adipiscing
-				enim eu turpis egestas. Bibendum arcu vitae elementum curabitur vitae nunc sed velit
-				dignissim. Magna eget est lorem ipsum dolor sit amet consectetur adipiscing. Laoreet sit
-				amet cursus sit amet dictum sit amet justo. Laoreet sit amet cursus sit amet dictum sit amet
-				justo. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				Bridge Capital is an aggregator of investment advisors that provides comprehensive wealth
+				management services, including investment management, financial planning, insurance, estate
+				planning, family office services, alternative asset classes, and more.
+			</p>
+			<p class="whoWeAreText">
+				Bridge Capital is a mission-driven organization endeavors to provide the highest caliber of
+				financial services accompanied with industry-leading hospitality and customer service. At
+				its core, Bridge Capital was built to serve its most important stakeholders: the clients and
+				the advisors.
+			</p>
+			<p class="whoWeAreText">
+				In addition to its core product offerings, Bridge Capital uniquely partners and invests in
+				mall-to-mid-scale firm and advisors. Everyone at Bridge Capital has an interest in the
+				success of the associated firms and advisors which produces a unique culture of
+				collaboration that emphasizes growth.
 			</p>
 		</div>
 		<div class="termsContainer">
@@ -37,7 +63,7 @@
 <div class="leaderCarousel">
 	<div class="leaderCarouselContainer">
 		<h2 class="leaderCarouselTitle">Meet Our Team</h2>
-		<LeaderCarousel />
+		<Leaders />
 	</div>
 </div>
 
