@@ -7,7 +7,7 @@
 	<title>Bridge Capital</title>
 	<meta
 		name="description"
-		content="Bridge Capital is an aggregator of investment advisors that provides comprehensive wealth management services."
+		content="Bridge Capital is a mission-driven aggregator of investment advisors providing comprehensive wealth management services across 28 states. We offer investment management, financial planning, insurance, estate planning, family office services, and alternative asset classes with industry-leading hospitality and over $8 billion in assets under management."
 	/>
 	<meta
 		name="keywords"
@@ -93,6 +93,10 @@
 		<div class="whyBridgeMapContainer">
 			<p class="whyBridgeMapText">Where we operate</p>
 			<img src={Map} alt="Bridge Capital Map" class="whyBridgeMap" />
+			<div class="mapLegend">
+				<p class="mapKey operatingStates">Operating States</p>
+				<p class="mapKey nonOperatingStates">Non-Operating States</p>
+			</div>
 		</div>
 	</div>
 </div>
@@ -209,5 +213,27 @@
 		font-weight: 600;
 		text-align: center;
 		margin: 20px 0;
+	}
+	.mapKey {
+		margin: 0;
+	}
+	.mapLegend {
+		margin-top: 20px;
+	}
+	.operatingStates:before {
+		content: '';
+		display: inline-block;
+		width: 20px;
+		height: 16px;
+		background-color: #767676;
+		margin-right: 10px;
+	}
+	.nonOperatingStates:before {
+		content: '';
+		display: inline-block;
+		width: 20px;
+		height: 16px;
+		background-color: #d0d0d0;
+		margin-right: 10px;
 	}
 </style>

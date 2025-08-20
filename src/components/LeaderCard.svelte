@@ -76,7 +76,7 @@
 		border-radius: var(--Radius);
 		overflow: hidden;
 		align-self: center;
-		box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.8);
+		box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.4);
 	}
 
 	.cardMedia img {
@@ -134,6 +134,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 12px 20px;
+		border: none;
 		border-radius: 999px;
 		background: var(--Accent);
 		color: #fff;
