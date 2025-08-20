@@ -2,27 +2,27 @@
 	const cards = [
 		{
 			id: 1,
-			title: 'Information',
+			title: 'Nationwide Footprint',
 			content:
-				'Bacon ipsum dolor amet ground round jowl cupim hamburger alcatra rump capicola burgdoggen fatback cow frankfurter brisket. Tongue capicola flank chicken pancetta alcatra landjaeger kevin meatball porchetta kielbasa. Short loin shoulder strip steak pig swine alcatra. Andouille pork belly beef sausage ham leberkas'
+				'Bridge Capital operates a nationwide footprint to deliver best-in-class services to its advisors and client utilizing a hub-and-spoke model with centralized corporate office functions. Bridge Capital is building out and operating in key geographic corridors in the United States with advisors and insurance specialists currently located in 28 states with clients located in each of the 50 states and more than $8 billion in assets under management. '
 		},
 		{
 			id: 2,
-			title: 'More Info',
+			title: 'Aligned for Growth',
 			content:
-				'Shankle pig sirloin swine capicola buffalo landjaeger, beef ribs tri-tip chicken filet mignon. Pork chop filet mignon pancetta bresaola picanha porchetta bacon ham hock alcatra short loin tongue.'
+				'At Bridge Capital, all affiliates are fully aligned with the success of the organization. This creates a unique culture of collaboration and synergy which helps support our rapid growth. The company is led by seasoned management that bring unique experiences and perspectives that are unparalleled in the industry.'
 		},
 		{
 			id: 3,
-			title: 'Other important stuff',
+			title: 'Advisory Excellence',
 			content:
-				'Beef boudin fatback, porchetta alcatra landjaeger bresaola chislic corned beef. Brisket capicola shank alcatra beef ribs, andouille jerky jowl turducken chislic.'
+				'BCAP empowers advisors to focus on delivering industry-leading advice, platforms and technology that creates differentiation and value to their clients. Clients work with BCAP’s advisors and deep bench of support to ensure a streamlined experience.'
 		},
 		{
 			id: 4,
-			title: 'Last one',
+			title: 'Giving Back',
 			content:
-				'Leberkas sausage picanha fatback. Ball tip strip steak biltong leberkas pancetta, ham porchetta pork loin drumstick ribeye boudin.'
+				'Bridge Capital is committed to impact beyond our affiliates and their clients that includes a Foundation to partner with our associates to affect causes that are important to them and the communities we live in.'
 		}
 	];
 </script>
@@ -107,6 +107,8 @@
 		rotate: -90deg;
 		transition: rotate 0.3s var(--ease-out-1);
 		white-space: nowrap;
+		font-size: 1.5rem;
+		font-weight: 600;
 		@media (max-width: 768px) {
 			rotate: 0deg;
 			top: 0.5rem;

@@ -1,5 +1,5 @@
 <script>
-	import { Skyline, Logo, LogoLetters } from '$images';
+	import { Skyline, Logo, LogoLetters, Map } from '$images';
 	import { Terms, Cards, LeaderCarousel, Leaders } from '$components';
 </script>
 
@@ -57,7 +57,45 @@
 		</div>
 	</div>
 </div>
-<div class="cards"></div>
+<div class="whyBridge">
+	<div class="whyBridgeContent">
+		<h2 class="whyBridgeTitle">Why Bridge Capital?</h2>
+		<!-- <p class="whyBridgeText">
+			Bridge Capital operates a nationwide footprint to deliver best-in-class services to its
+			advisors and client utilizing a hub-and-spoke model with centralized corporate office
+			functions. Bridge Capital is building out and operating in key geographic corridors in the
+			United States with advisors and insurance specialists currently located in 28 states with
+			clients located in each of the 50 states and more than $8 billion in assets under management.
+			(SEE MAP EXAMPLE BELOW-I’D LIKE TO SHADE IN THE STATES WHERE WE HAVE LOCATIONS RATHER THAN
+			THIS EXAMPLE WITH CITY LOCATIONS—STATES TO SHADE Arizona, California, Colorado, Connecticut,
+			Georgia, Florida, Hawaii, Illinois, Indiana, Iowa, Kansas, Kentucky, Maryland, Massachusetts,
+			Michigan, Minnesota, Missouri, Nebraska, Nevada, North Carolina, New Jersey, New York, Ohio,
+			Oklahoma, Pennsylvania, South Carolina, Tennessee, Texas).
+		</p>
+		<p class="whyBridgeText">
+			At Bridge Capital, all affiliates are fully aligned with the success of the organization. This
+			creates a unique culture of collaboration and synergy which helps support our rapid growth.
+			The company is led by seasoned management that bring unique experiences and perspectives that
+			are unparalleled in the industry.
+		</p>
+		<p class="whyBridgeText">
+			BCAP empowers advisors to focus on delivering industry-leading advice, platforms and
+			technology that creates differentiation and value to their clients. Clients work with BCAP’s
+			advisors and deep bench of support to ensure a streamlined experience.
+		</p>
+		<p class="whyBridgeText">
+			Bridge Capital is committed to impact beyond our affiliates and their clients that includes a
+			Foundation to partner with our associates to affect causes that are important to them and the
+			communities we live in.
+		</p> -->
+		<Cards />
+
+		<div class="whyBridgeMapContainer">
+			<p class="whyBridgeMapText">Where we operate</p>
+			<img src={Map} alt="Bridge Capital Map" class="whyBridgeMap" />
+		</div>
+	</div>
+</div>
 <div class="leaderCarousel">
 	<div class="leaderCarouselContainer">
 		<h2 class="leaderCarouselTitle">Meet Our Team</h2>
@@ -124,7 +162,8 @@
 		container-type: inline-size;
 	}
 	.whoWeAreTitle,
-	.leaderCarouselTitle {
+	.leaderCarouselTitle,
+	.whyBridgeTitle {
 		font-size: clamp(2rem, 5.5vw, 3.5rem);
 		font-weight: 600;
 		text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.35);
@@ -151,5 +190,24 @@
 	.leaderCarousel {
 		padding: 4rem 0;
 		background-color: #fff;
+	}
+	.whyBridge {
+		padding: 4rem 0;
+		color: #fff;
+		width: calc(100% - 1rem);
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.whyBridgeMapContainer {
+		width: calc(100% - 1rem);
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	.whyBridgeMapText {
+		font-size: 1.5rem;
+		font-weight: 600;
+		text-align: center;
+		margin: 20px 0;
 	}
 </style>

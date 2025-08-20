@@ -5,5 +5,6 @@ import Chevron from './ChevronWide.svg';
 import Crawford from './crawford.png';
 import Fry from './fry.jpg';
 import Phelan from './phelan.png';
+import Map from './USMap.svg';
 
-export { Skyline, Logo, LogoLetters, Chevron, Crawford, Fry, Phelan };
+export { Skyline, Logo, LogoLetters, Chevron, Crawford, Fry, Phelan, Map };
