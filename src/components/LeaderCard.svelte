@@ -76,6 +76,7 @@
 		border-radius: var(--Radius);
 		overflow: hidden;
 		align-self: center;
+		box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.8);
 	}
 
 	.cardMedia img {
@@ -163,6 +164,7 @@
 			border-radius: 10px 10px 0 0;
 			overflow: hidden;
 			margin: 0;
+			box-shadow: none;
 		}
 
 		.cardBody {
