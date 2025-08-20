@@ -70,6 +70,7 @@
 		justify-content: flex-start;
 		@media (max-width: 768px) {
 			flex-wrap: wrap;
+			height: fit-content;
 		}
 	}
 	.card {
