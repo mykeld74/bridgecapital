@@ -57,9 +57,7 @@
 		</div>
 	</div>
 </div>
-<div class="cards">
-	<Cards />
-</div>
+<div class="cards"></div>
 <div class="leaderCarousel">
 	<div class="leaderCarouselContainer">
 		<h2 class="leaderCarouselTitle">Meet Our Team</h2>

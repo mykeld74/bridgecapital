@@ -1,4 +1,6 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
 	const {
 		image,
 		name,
@@ -7,7 +9,15 @@
 		ctaLabel = 'Learn More',
 		href = '#'
 	} = $props();
+
 	let isHover = $state(false);
+
+	// Create a custom event dispatcher
+	const dispatch = createEventDispatcher();
+
+	function handleLearnMoreClick() {
+		dispatch('learnMore', { name, role, description });
+	}
 </script>
 
 <div
@@ -30,7 +40,7 @@
 
 				<p class="description">{description}</p>
 
-				<a class="ctaButton" {href}>{ctaLabel}</a>
+				<button class="ctaButton" onclick={handleLearnMoreClick}>{ctaLabel}</button>
 			</div>
 		</div>
 	</div>
@@ -143,21 +153,23 @@
 	@media (max-width: 768px) {
 		.cardInner {
 			display: block;
+			height: fit-content;
 		}
 
 		.cardMedia {
 			max-width: none;
 			width: 100%;
 			aspect-ratio: 16/9;
-			border-radius: var(--Radius);
+			border-radius: 10px 10px 0 0;
 			overflow: hidden;
-			margin: 0 0 12px 0;
+			margin: 0;
 		}
 
 		.cardBody {
 			grid: unset;
-			padding: 20px;
-			border-radius: var(--Radius);
+			padding: 20px 20px 40px 20px;
+			border-radius: 0 0 10px 10px;
+			min-height: 560px;
 		}
 
 		.cardBodyContent {
