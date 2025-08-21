@@ -1,6 +1,19 @@
 <script>
 	import { Skyline, Logo, LogoLetters, Map } from '$images';
 	import { Terms, Cards, LeaderCarousel, Leaders } from '$components';
+
+	let contactUsModal;
+
+	function openContactUsModal() {
+		if (contactUsModal?.showModal) {
+			contactUsModal.showModal();
+		} else {
+			contactUsModal.open = true;
+		}
+	}
+	function closeContactUsModal() {
+		contactUsModal.close();
+	}
 </script>
 
 <svelte:head>
@@ -106,6 +119,39 @@
 		<Leaders />
 	</div>
 </div>
+<div class="contactUs">
+	<div class="contactUsButtonContainer">
+		<button class="contactUsButton" onclick={openContactUsModal}>Contact Us</button>
+	</div>
+</div>
+
+<dialog
+	id="contactUsModal"
+	bind:this={contactUsModal}
+	onclick={(e) => e.target === contactUsModal && contactUsModal.close()}
+>
+	<div class="contactUsModalContent">
+		<button
+			type="button"
+			class="contactUsModalClose"
+			aria-label="Close"
+			onclick={() => contactUsModal.close()}>&times;</button
+		>
+		<h2 class="contactUsModalTitle">Contact Us</h2>
+		<p class="contactUsModalText">Please fill out the form below to contact us.</p>
+		<form class="contactUsModalForm">
+			<label for="name">Name</label>
+			<input type="text" placeholder="Name" id="name" name="name" />
+			<label for="email">Email</label>
+			<input type="email" placeholder="Email" id="email" name="email" />
+			<label for="phone">Phone</label>
+			<input type="tel" placeholder="Phone" id="phone" name="phone" />
+			<label for="message">Message</label>
+			<textarea placeholder="Message" id="message" name="message"></textarea>
+			<button type="submit" class="contactUsModalButton">Submit</button>
+		</form>
+	</div>
+</dialog>
 
 <style>
 	.hero {
@@ -235,5 +281,144 @@
 		height: 16px;
 		background-color: #d0d0d0;
 		margin-right: 10px;
+	}
+
+	/* Contact Us section */
+	.contactUs {
+		padding: 3rem 0 4rem;
+		background-color: #fff;
+	}
+	.contactUsButtonContainer {
+		display: flex;
+		justify-content: center;
+	}
+	.contactUsButton {
+		width: 300px;
+		height: 70px;
+		appearance: none;
+		border: none;
+		border-radius: 10px;
+
+		background-color: #12213e;
+		color: #fff;
+		padding: 0.9rem 1.5rem;
+		font-size: 2rem;
+		font-weight: 600;
+		cursor: pointer;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+		transition:
+			transform 120ms ease,
+			box-shadow 120ms ease,
+			background-color 120ms ease;
+	}
+	.contactUsButton:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+		background-color: #0e1b33;
+	}
+	.contactUsButton:active {
+		transform: translateY(0);
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	}
+
+	#contactUsModal {
+		padding: 0;
+		border: none;
+		border-radius: 14px;
+		width: min(92vw, 560px);
+		opacity: 1;
+		background: #ffffff;
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+		transition-behavior: allow-discrete;
+		transition-delay: 100ms;
+		transition: all 200ms ease-in-out;
+		@starting-style {
+			transform: translateY(200px);
+			opacity: 0;
+		}
+	}
+	#contactUsModal::backdrop {
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(2px);
+		transition-behavior: allow-discrete;
+		transition: all 200ms ease-in-out;
+		@starting-style {
+			background: rgba(0, 0, 0, 0);
+			backdrop-filter: blur(0px);
+		}
+	}
+	.contactUsModalContent {
+		position: relative;
+		padding: 1.5rem;
+		display: grid;
+		gap: 0.9rem;
+		font-family: 'Public Sans', sans-serif;
+	}
+	.contactUsModalClose {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		border: none;
+		background: transparent;
+		font-size: 1.5rem;
+		line-height: 1;
+		cursor: pointer;
+		color: #6b7280;
+	}
+	.contactUsModalClose:hover {
+		color: #111827;
+	}
+	.contactUsModalTitle {
+		margin: 0 0 0.25rem;
+		font-size: 1.5rem;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+	.contactUsModalText {
+		margin: 0 0 0.75rem;
+		color: #374151;
+	}
+	.contactUsModalForm {
+		display: grid;
+		gap: 0.75rem;
+	}
+	.contactUsModalForm label {
+		font-weight: 600;
+		font-size: 0.95rem;
+	}
+	.contactUsModalForm input,
+	.contactUsModalForm textarea {
+		width: 100%;
+		padding: 0.7rem 0.8rem;
+		border: 1px solid #d1d5db;
+		border-radius: 10px;
+		font-size: 1rem;
+		font-family: inherit;
+		outline: none;
+		background: #fff;
+	}
+	.contactUsModalForm textarea {
+		min-height: 110px;
+		resize: vertical;
+	}
+	.contactUsModalForm input:focus,
+	.contactUsModalForm textarea:focus {
+		border-color: #12213e;
+		box-shadow: 0 0 0 3px rgba(18, 33, 62, 0.15);
+	}
+	.contactUsModalButton {
+		margin-top: 0.5rem;
+		appearance: none;
+		border: none;
+		border-radius: 10px;
+		background-color: #12213e;
+		color: #fff;
+		padding: 0.9rem 1.2rem;
+		font-size: 1rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+	.contactUsModalButton:hover {
+		background-color: #0e1b33;
 	}
 </style>
