@@ -3,13 +3,10 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		// Set initial state for all nodes
 		gsap.set('.termNode', { opacity: 0.85, scale: 1 });
 
-		// Create timeline for continuous animations
 		const tl = gsap.timeline({ repeat: -1 });
 
-		// Animate each node with staggered timing
 		const nodes = [
 			'.equityNode',
 			'.assetsNode',
@@ -19,7 +16,6 @@
 		];
 
 		nodes.forEach((node, index) => {
-			// Add animation for each node with staggered delay
 			tl.to(
 				node,
 				{
@@ -41,10 +37,8 @@
 			);
 		});
 
-		// Set the timeline duration to match the total cycle time
 		tl.duration(10);
 
-		// Set the timeline to repeat infinitely
 		tl.repeat(-1);
 	});
 </script>

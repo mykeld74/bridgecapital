@@ -2,27 +2,28 @@
 	const cards = [
 		{
 			id: 1,
+			title: 'Advisory Excellence',
+			content:
+				'Advisors have access to multiple platforms, fully integrated planning software and tools, alternative investments, Broker-Dealers, and all the resources to accelerate their business. BCAP empowers advisors to focus on delivering industry-leading advice, platforms and technology that creates differentiation and value to their clients. Clients work with BCAP’s advisors and deep bench of support to ensure a streamlined experience.'
+		},
+		{
+			id: 2,
 			title: 'Nationwide Footprint',
 			content:
 				'Bridge Capital operates a nationwide footprint to deliver best-in-class services to its advisors and client utilizing a hub-and-spoke model with centralized corporate office functions. Bridge Capital is building out and operating in key geographic corridors in the United States with advisors and insurance specialists currently located in 28 states with clients located in each of the 50 states and more than $8 billion in assets under management. '
 		},
 		{
-			id: 2,
+			id: 3,
 			title: 'Aligned for Growth',
 			content:
 				'At Bridge Capital, all affiliates are fully aligned with the success of the organization. This creates a unique culture of collaboration and synergy which helps support our rapid growth. The company is led by seasoned management that bring unique experiences and perspectives that are unparalleled in the industry.'
 		},
-		{
-			id: 3,
-			title: 'Advisory Excellence',
-			content:
-				'BCAP empowers advisors to focus on delivering industry-leading advice, platforms and technology that creates differentiation and value to their clients. Clients work with BCAP’s advisors and deep bench of support to ensure a streamlined experience.'
-		},
+
 		{
 			id: 4,
 			title: 'Giving Back',
 			content:
-				'Bridge Capital is committed to impact beyond our affiliates and their clients that includes a Foundation to partner with our associates to affect causes that are important to them and the communities we live in.'
+				'Bridge Capital is committed to impact beyond our affiliates and their clients that includes the Bridge Capital Foundation to partner with our associates to affect causes that are important to them and the communities we live in.'
 		}
 	];
 </script>

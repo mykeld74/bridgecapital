@@ -144,6 +144,7 @@
 			background-color 200ms ease,
 			transform 200ms ease;
 		width: fit-content;
+		cursor: pointer;
 	}
 
 	.ctaButton:hover {

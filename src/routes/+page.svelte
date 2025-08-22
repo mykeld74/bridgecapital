@@ -104,12 +104,12 @@
 		<Cards />
 
 		<div class="whyBridgeMapContainer">
-			<p class="whyBridgeMapText">Where we operate</p>
+			<p class="whyBridgeMapText">Advisor Locations</p>
 			<img src={Map} alt="Bridge Capital Map" class="whyBridgeMap" />
-			<div class="mapLegend">
+			<!-- <div class="mapLegend">
 				<p class="mapKey operatingStates">Operating States</p>
 				<p class="mapKey nonOperatingStates">Non-Operating States</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
