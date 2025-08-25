@@ -101,15 +101,15 @@
 		});
 
 		// Hide tooltip after touch
-		document.addEventListener('touchend', () => {
-			setTimeout(() => {
-				if (currentTooltip) {
-					const tooltip = document.querySelector(`[data-node="${currentTooltip}"]`);
-					if (tooltip) tooltip.classList.remove('visible');
-					currentTooltip = null;
-				}
-			}, 3000);
-		});
+		// document.addEventListener('touchend', () => {
+		// 	setTimeout(() => {
+		// 		if (currentTooltip) {
+		// 			const tooltip = document.querySelector(`[data-node="${currentTooltip}"]`);
+		// 			if (tooltip) tooltip.classList.remove('visible');
+		// 			currentTooltip = null;
+		// 		}
+		// 	}, 3000);
+		// });
 	});
 </script>
 
