@@ -8,11 +8,11 @@
 		const tl = gsap.timeline({ repeat: -1 });
 
 		const nodes = [
-			'.equityNode',
-			'.assetsNode',
-			'.valuationNode',
-			'.capitalNode',
-			'.dividendsNode'
+			'.impactNode',
+			'.collaborationNode',
+			'.growthNode',
+			'.innovationNode',
+			'.differentiationNode'
 		];
 
 		nodes.forEach((node, index) => {
@@ -38,8 +38,118 @@
 		});
 
 		tl.duration(10);
-
 		tl.repeat(-1);
+
+		// Simple tooltip system
+		const circles = document.querySelectorAll('.svgCircle');
+		const texts = document.querySelectorAll('.svgText');
+		let currentTooltip = null;
+
+		console.log('Found circles:', circles.length);
+		console.log('Found texts:', texts.length);
+
+		// Show tooltip
+		const showTooltip = (nodeClass) => {
+			console.log('showTooltip called with:', nodeClass);
+			if (currentTooltip === nodeClass) return;
+
+			// Hide current tooltip
+			if (currentTooltip) {
+				const tooltip = document.querySelector(`[data-node="${currentTooltip}"]`);
+				if (tooltip) tooltip.classList.remove('visible');
+			}
+
+			// Show new tooltip
+			const tooltip = document.querySelector(`[data-node="${nodeClass}"]`);
+			console.log('Found tooltip:', tooltip);
+			if (tooltip) {
+				tooltip.classList.add('visible');
+				currentTooltip = nodeClass;
+				console.log('Added visible class to:', nodeClass);
+				console.log('Tooltip classes now:', tooltip.className);
+			}
+		};
+
+		// Hide tooltip
+		const hideTooltip = (nodeClass) => {
+			console.log('hideTooltip called with:', nodeClass);
+			if (currentTooltip === nodeClass) {
+				const tooltip = document.querySelector(`[data-node="${nodeClass}"]`);
+				if (tooltip) tooltip.classList.remove('visible');
+				currentTooltip = null;
+			}
+		};
+
+		// Add event listeners
+		circles.forEach((circle, index) => {
+			const parentGroup = circle.parentElement;
+			const nodeClass = Array.from(parentGroup.classList).find((cls) => cls.endsWith('Node'));
+			console.log(
+				`Circle ${index} parent classes:`,
+				parentGroup.classList,
+				'Found nodeClass:',
+				nodeClass
+			);
+
+			if (nodeClass) {
+				circle.addEventListener('mouseenter', () => {
+					console.log('Mouse enter on circle:', nodeClass);
+					showTooltip(nodeClass);
+				});
+				circle.addEventListener('mouseleave', () => {
+					console.log('Mouse leave on circle:', nodeClass);
+					hideTooltip(nodeClass);
+				});
+				circle.addEventListener('touchstart', () => showTooltip(nodeClass));
+			}
+		});
+
+		texts.forEach((text, index) => {
+			const parentGroup = text.parentElement;
+			const nodeClass = Array.from(parentGroup.classList).find((cls) => cls.endsWith('Node'));
+			console.log(
+				`Text ${index} parent classes:`,
+				parentGroup.classList,
+				'Found nodeClass:',
+				nodeClass
+			);
+
+			if (nodeClass) {
+				text.addEventListener('mouseenter', () => {
+					console.log('Mouse enter on text:', nodeClass);
+					showTooltip(nodeClass);
+				});
+				text.addEventListener('mouseleave', () => {
+					console.log('Mouse leave on text:', nodeClass);
+					hideTooltip(nodeClass);
+				});
+				text.addEventListener('touchstart', () => showTooltip(nodeClass));
+			}
+		});
+
+		// Hide tooltip after touch
+		document.addEventListener('touchend', () => {
+			setTimeout(() => {
+				if (currentTooltip) {
+					const tooltip = document.querySelector(`[data-node="${currentTooltip}"]`);
+					if (tooltip) tooltip.classList.remove('visible');
+					currentTooltip = null;
+				}
+			}, 1000);
+		});
+
+		// Debug: Test if tooltips can be shown
+		console.log('All tooltips found:', document.querySelectorAll('.tooltip'));
+
+		// Test tooltip functionality after a delay
+		setTimeout(() => {
+			const testTooltip = document.querySelector('[data-node="impactNode"]');
+			if (testTooltip) {
+				console.log('Test tooltip found:', testTooltip);
+				testTooltip.classList.add('visible');
+				console.log('Added visible class, classes now:', testTooltip.className);
+			}
+		}, 1000);
 	});
 </script>
 
@@ -88,10 +198,10 @@
 				stroke-width="2"
 			/>
 			<g id="nodes">
-				<g class="equityNode termNode">
+				<g class="impactNode termNode">
 					<circle class="svgCircle circle1" cx="113.5" cy="182.5" r="58.5" fill="#12213E" />
 					<text
-						id="Equity"
+						id="Impact"
 						class="svgText"
 						x="113.5"
 						y="182.5"
@@ -99,10 +209,10 @@
 						dominant-baseline="middle">Impact</text
 					>
 				</g>
-				<g class="assetsNode termNode">
+				<g class="collaborationNode termNode">
 					<circle class="svgCircle circle2" cx="133.5" cy="420.5" r="58.5" fill="#12213E" />
 					<text
-						id="Assets"
+						id="Collaboration"
 						class="svgText"
 						x="133.5"
 						y="420.5"
@@ -110,10 +220,10 @@
 						dominant-baseline="middle">Collaboration</text
 					>
 				</g>
-				<g class="valuationNode termNode">
+				<g class="growthNode termNode">
 					<circle class="svgCircle circle3" cx="269.5" cy="300.5" r="58.5" fill="#12213E" />
 					<text
-						id="Valuation"
+						id="Growth"
 						class="svgText"
 						x="269.5"
 						y="300.5"
@@ -121,10 +231,10 @@
 						dominant-baseline="middle">Growth</text
 					>
 				</g>
-				<g class="capitalNode termNode">
+				<g class="innovationNode termNode">
 					<circle class="svgCircle circle4" cx="361.5" cy="93.5" r="58.5" fill="#12213E" />
 					<text
-						id="Capital"
+						id="Innovation"
 						class="svgText"
 						x="361.5"
 						y="93.5"
@@ -132,10 +242,10 @@
 						dominant-baseline="middle">Innovation</text
 					>
 				</g>
-				<g class="dividendsNode termNode">
+				<g class="differentiationNode termNode">
 					<circle class="svgCircle circle5" cx="431" cy="318" r="61" fill="#12213E" />
 					<text
-						id="Dividends"
+						id="Differentiation"
 						class="svgText"
 						x="431"
 						y="318"
@@ -144,39 +254,206 @@
 					>
 				</g>
 			</g>
-		</g></svg
-	>
+		</g>
+	</svg>
+
+	<!-- HTML Tooltips -->
+	<div class="tooltip impactTooltip" data-node="impactNode">
+		<div class="tooltipContent">
+			<p>
+				Our partners put their clients' goals and interests first. With the plethora of the BCAP
+				network and resources, clients can be assured they are getting the very best and advisors
+				know their practices are always positioned to be the best. Our organization is also deeply
+				committed to charitable activities in our local communities.
+			</p>
+		</div>
+	</div>
+
+	<div class="tooltip collaborationTooltip" data-node="collaborationNode">
+		<div class="tooltipContent">
+			<p>
+				With a shared interest in the success of others, our advisors and partner firms are part of
+				a unique culture of idea sharing and have access to an extensive amount of product and
+				advanced market specialists for both wealth management and insurance programs. You are never
+				alone.
+			</p>
+		</div>
+	</div>
+
+	<div class="tooltip growthTooltip" data-node="growthNode">
+		<div class="tooltipContent">
+			<p>
+				Bridge Capital is rapidly expanding nationwide and not only brings extensive capital to
+				monetize advisors, but thoughtful strategies that accelerate the potential of any wealth
+				management or insurance practice. Our partners not only realize best values, but
+				opportunities to expand their impact into the future.
+			</p>
+		</div>
+	</div>
+
+	<div class="tooltip innovationTooltip" data-node="innovationNode">
+		<div class="tooltipContent">
+			<p>
+				With BCAP you will find cutting edge industry tools and resources that are a collection of
+				the unique and best practices of our partner firms that utilize the latest industry
+				technology and trends. We challenge traditional methods and seek new ideas, the status quo
+				is never enough.
+			</p>
+		</div>
+	</div>
+
+	<div class="tooltip differentiationTooltip" data-node="differentiationNode">
+		<div class="tooltipContent">
+			<p>
+				Advisors are challenged to find ways that they can distinguish themselves from the herd.
+				BCAP is uniquely positioned to bring resources and tools to advisors that allow them to
+				address expanding markets and navigate new complexities. The results are additional services
+				being added to our partner practices.
+			</p>
+		</div>
+	</div>
 </div>
 
 <style>
+	.termsContainer {
+		position: relative;
+		width: 100%;
+		max-width: 502px;
+		margin: 0 auto;
+	}
+
 	svg {
 		width: 100%;
 		height: auto;
 	}
+
 	.svgText {
 		font-family: 'Public Sans', sans-serif;
 		font-size: 16px;
 		fill: #fff;
+		cursor: pointer;
+		transition: fill 0.3s ease-in-out;
 	}
+
+	.svgText:hover {
+		fill: #e0e0e0;
+	}
+
 	.svgCircle {
 		transition: opacity 0.3s ease-in-out;
+		cursor: pointer;
 	}
+
+	.svgCircle:hover {
+		fill: #1a2f5a;
+		outline: 2px solid #fff;
+		outline-offset: 2px;
+	}
+
 	.circle1 {
 		fill: #12213e;
 	}
+
 	.circle2 {
 		fill: #12213e;
 	}
+
 	.circle3 {
 		fill: #12213e;
 	}
+
 	.circle4 {
 		fill: #12213e;
 	}
+
 	.circle5 {
 		fill: #12213e;
 	}
+
 	.termNode {
 		transform-origin: center;
+	}
+
+	/* Tooltip Styles */
+	.tooltip {
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 1000;
+		pointer-events: none;
+		max-width: 90vw;
+		word-wrap: break-word;
+		transition:
+			opacity 0.2s ease-in-out,
+			visibility 0.2s ease-in-out;
+		&:global(.visible) {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.tooltipContent {
+		background: rgba(18, 33, 62, 0.95);
+		color: white;
+		padding: 1rem;
+		border-radius: 8px;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+		font-family: 'Public Sans', sans-serif;
+		font-size: 14px;
+		line-height: 1.5;
+		max-width: 320px;
+	}
+
+	.tooltipContent p {
+		margin: 0;
+		color: #e0e0e0;
+	}
+
+	/* Tooltip Positioning */
+	.impactTooltip {
+		top: 120px;
+		left: 200px;
+		z-index: 9999;
+	}
+
+	.collaborationTooltip {
+		bottom: 120px;
+		left: 200px;
+		z-index: 9999;
+	}
+
+	.growthTooltip {
+		top: 240px;
+		left: 200px;
+		z-index: 9999;
+	}
+
+	.innovationTooltip {
+		top: 60px;
+		left: 200px;
+		z-index: 9999;
+	}
+
+	.differentiationTooltip {
+		top: 260px;
+		left: 200px;
+		z-index: 9999;
+	}
+
+	/* Mobile responsive positioning */
+	@media (max-width: 768px) {
+		.tooltip {
+			position: fixed;
+			top: 50% !important;
+			left: 50% !important;
+			transform: translate(-50%, -50%);
+			width: 90vw;
+			max-width: 320px;
+		}
+
+		.tooltipContent {
+			font-size: 16px;
+			padding: 1.5rem;
+		}
 	}
 </style>
