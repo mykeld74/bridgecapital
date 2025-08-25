@@ -53,10 +53,10 @@
 				planning, family office services, alternative asset classes, and more.
 			</p>
 			<p class="whoWeAreText">
-				Bridge Capital is a mission-driven organization endeavors to provide the highest caliber of
-				financial services accompanied with industry-leading hospitality and customer service. At
-				its core, Bridge Capital was built to serve its most important stakeholders: the clients and
-				the advisors.
+				Bridge Capital is a mission-driven organization that endeavors to provide the highest
+				caliber of financial services accompanied with industry-leading hospitality and customer
+				service. At its core, Bridge Capital was built to serve its most important stakeholders: the
+				clients and the advisors.
 			</p>
 			<p class="whoWeAreText">
 				In addition to its core product offerings, Bridge Capital uniquely partners and invests in

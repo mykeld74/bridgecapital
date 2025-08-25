@@ -140,16 +140,6 @@
 
 		// Debug: Test if tooltips can be shown
 		console.log('All tooltips found:', document.querySelectorAll('.tooltip'));
-
-		// Test tooltip functionality after a delay
-		setTimeout(() => {
-			const testTooltip = document.querySelector('[data-node="impactNode"]');
-			if (testTooltip) {
-				console.log('Test tooltip found:', testTooltip);
-				testTooltip.classList.add('visible');
-				console.log('Added visible class, classes now:', testTooltip.className);
-			}
-		}, 1000);
 	});
 </script>
 
