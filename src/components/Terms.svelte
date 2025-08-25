@@ -373,7 +373,7 @@
 	.impactTooltip {
 		top: 120px;
 		left: 200px;
-		z-index: 9999;
+		z-index: 500;
 	}
 
 	.collaborationTooltip {

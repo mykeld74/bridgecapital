@@ -2,6 +2,7 @@
 	let { data, children } = $props();
 	import '$css/reset.css';
 	import '$css/styles.css';
+	import { Nav } from '$components';
 </script>
 
 <svelte:head>
@@ -13,6 +14,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="apple-mobile-web-app-title" content="Bridge Capital" />
 </svelte:head>
+
+<Nav />
 
 {@render children()}
 
