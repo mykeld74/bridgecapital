@@ -45,12 +45,13 @@
 		const texts = document.querySelectorAll('.svgText');
 		let currentTooltip = null;
 
-		console.log('Found circles:', circles.length);
-		console.log('Found texts:', texts.length);
+		// Ensure all tooltips are hidden on page load
+		document.querySelectorAll('.tooltip').forEach((tooltip) => {
+			tooltip.classList.remove('visible');
+		});
 
 		// Show tooltip
 		const showTooltip = (nodeClass) => {
-			console.log('showTooltip called with:', nodeClass);
 			if (currentTooltip === nodeClass) return;
 
 			// Hide current tooltip
@@ -61,18 +62,14 @@
 
 			// Show new tooltip
 			const tooltip = document.querySelector(`[data-node="${nodeClass}"]`);
-			console.log('Found tooltip:', tooltip);
 			if (tooltip) {
 				tooltip.classList.add('visible');
 				currentTooltip = nodeClass;
-				console.log('Added visible class to:', nodeClass);
-				console.log('Tooltip classes now:', tooltip.className);
 			}
 		};
 
 		// Hide tooltip
 		const hideTooltip = (nodeClass) => {
-			console.log('hideTooltip called with:', nodeClass);
 			if (currentTooltip === nodeClass) {
 				const tooltip = document.querySelector(`[data-node="${nodeClass}"]`);
 				if (tooltip) tooltip.classList.remove('visible');
@@ -81,48 +78,24 @@
 		};
 
 		// Add event listeners
-		circles.forEach((circle, index) => {
+		circles.forEach((circle) => {
 			const parentGroup = circle.parentElement;
 			const nodeClass = Array.from(parentGroup.classList).find((cls) => cls.endsWith('Node'));
-			console.log(
-				`Circle ${index} parent classes:`,
-				parentGroup.classList,
-				'Found nodeClass:',
-				nodeClass
-			);
 
 			if (nodeClass) {
-				circle.addEventListener('mouseenter', () => {
-					console.log('Mouse enter on circle:', nodeClass);
-					showTooltip(nodeClass);
-				});
-				circle.addEventListener('mouseleave', () => {
-					console.log('Mouse leave on circle:', nodeClass);
-					hideTooltip(nodeClass);
-				});
+				circle.addEventListener('mouseenter', () => showTooltip(nodeClass));
+				circle.addEventListener('mouseleave', () => hideTooltip(nodeClass));
 				circle.addEventListener('touchstart', () => showTooltip(nodeClass));
 			}
 		});
 
-		texts.forEach((text, index) => {
+		texts.forEach((text) => {
 			const parentGroup = text.parentElement;
 			const nodeClass = Array.from(parentGroup.classList).find((cls) => cls.endsWith('Node'));
-			console.log(
-				`Text ${index} parent classes:`,
-				parentGroup.classList,
-				'Found nodeClass:',
-				nodeClass
-			);
 
 			if (nodeClass) {
-				text.addEventListener('mouseenter', () => {
-					console.log('Mouse enter on text:', nodeClass);
-					showTooltip(nodeClass);
-				});
-				text.addEventListener('mouseleave', () => {
-					console.log('Mouse leave on text:', nodeClass);
-					hideTooltip(nodeClass);
-				});
+				text.addEventListener('mouseenter', () => showTooltip(nodeClass));
+				text.addEventListener('mouseleave', () => hideTooltip(nodeClass));
 				text.addEventListener('touchstart', () => showTooltip(nodeClass));
 			}
 		});
@@ -135,11 +108,8 @@
 					if (tooltip) tooltip.classList.remove('visible');
 					currentTooltip = null;
 				}
-			}, 1000);
+			}, 3000);
 		});
-
-		// Debug: Test if tooltips can be shown
-		console.log('All tooltips found:', document.querySelectorAll('.tooltip'));
 	});
 </script>
 
