@@ -40,7 +40,9 @@
 <nav class="navContainer" class:navScrolled={hasScrolled}>
 	<div class="navContent">
 		<div class="navMenu" class:navMenuOpen={isMenuOpen}>
-			<a href="/" class="navLink" onclick={closeMenu}>Home</a>
+			{#if !isHomepage}
+				<a href="/" class="navLink" onclick={closeMenu}>Home</a>
+			{/if}
 
 			<a href="/advisor-access" class="navLink navLinkButton" onclick={closeMenu}>Advisor Access</a>
 			<a href="/client-access" class="navLink navLinkButton" onclick={closeMenu}>Client Access</a>

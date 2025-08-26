@@ -1,6 +1,105 @@
-<script>
+<script lang="ts">
 	import { Skyline, Logo, LogoLetters, Map } from '$images';
 	import { Terms, Cards, LeaderCarousel, Leaders } from '$components';
+	import IMask from 'imask';
+	import { fade } from 'svelte/transition';
+
+	const maskConfig = { mask: '(000) 000-0000' };
+
+	let formData = $state({
+		name: '',
+		email: '',
+		phone: '',
+		message: ''
+	});
+
+	let status = $state({
+		sending: false,
+		success: false,
+		error: null as string | null
+	});
+
+	let formIsValid = $state(false);
+	let errors = $state({
+		name: '',
+		email: '',
+		phone: '',
+		message: ''
+	});
+
+	async function handleSubmit(e: SubmitEvent) {
+		const emailTest = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,6}$/;
+
+		if (formData.name.length < 2) {
+			formIsValid = false;
+			errors.name = 'Please enter your name.';
+		} else {
+			errors.name = '';
+		}
+
+		if (emailTest.test(formData.email) === false) {
+			formIsValid = false;
+			errors.email = 'Please enter a valid email address.';
+		} else {
+			errors.email = '';
+		}
+
+		if (formData.message.length < 3) {
+			formIsValid = false;
+			errors.message = 'Please tell us how we can help you.';
+		} else {
+			errors.message = '';
+		}
+
+		if (formData.phone.length < 10) {
+			formIsValid = false;
+			errors.phone = 'Please enter a valid phone number.';
+		} else {
+			errors.phone = '';
+		}
+
+		e.preventDefault();
+
+		if (!formIsValid) {
+			return;
+		}
+
+		status.sending = true;
+		status.error = null;
+
+		try {
+			const response = await fetch('/', {
+				method: 'POST',
+				body: JSON.stringify(formData),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				status.success = true;
+				formData = { name: '', email: '', phone: '', message: '' };
+				setTimeout(() => {
+					contactUsModal.close();
+					status.success = false;
+					status.error = null;
+				}, 5000);
+			} else {
+				status.error = result.error || 'Failed to send message';
+			}
+		} catch (error) {
+			status.error = 'Failed to send message';
+		} finally {
+			status.sending = false;
+		}
+	}
+
+	function handleInput(field: keyof typeof formData) {
+		errors[field] = '';
+		formIsValid = true;
+	}
 
 	let contactUsModal;
 
@@ -67,6 +166,7 @@
 		</div>
 		<div class="termsContainer">
 			<Terms />
+			<p class="instructions">Hover terms to learn more</p>
 		</div>
 	</div>
 </div>
@@ -129,6 +229,7 @@
 	id="contactUsModal"
 	bind:this={contactUsModal}
 	onclick={(e) => e.target === contactUsModal && contactUsModal.close()}
+	out:fade={{ duration: 200 }}
 >
 	<div class="contactUsModalContent">
 		<button
@@ -139,17 +240,81 @@
 		>
 		<h2 class="contactUsModalTitle">Contact Us</h2>
 		<p class="contactUsModalText">Please fill out the form below to contact us.</p>
-		<form class="contactUsModalForm">
-			<label for="name">Name</label>
-			<input type="text" placeholder="Name" id="name" name="name" />
-			<label for="email">Email</label>
-			<input type="email" placeholder="Email" id="email" name="email" />
-			<label for="phone">Phone</label>
-			<input type="tel" placeholder="Phone" id="phone" name="phone" />
-			<label for="message">Message</label>
-			<textarea placeholder="Message" id="message" name="message"></textarea>
-			<button type="submit" class="contactUsModalButton">Submit</button>
-		</form>
+		<div class="contactContainer">
+			{#if status.success}
+				<div class="successMessage">
+					<h2>Thank you!</h2>
+					<p>Your message has been sent. We'll be in touch soon.</p>
+				</div>
+			{:else}
+				<form class="contactForm" onsubmit={handleSubmit}>
+					<div class="formGroup">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							id="name"
+							bind:value={formData.name}
+							oninput={() => handleInput('name')}
+							required
+						/>
+						{#if errors.name}
+							<div class="errorMessage" transition:fade>{errors.name}</div>
+						{/if}
+					</div>
+
+					<div class="formGroup">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							bind:value={formData.email}
+							oninput={() => handleInput('email')}
+							required
+						/>
+						{#if errors.email}
+							<div class="errorMessage" transition:fade>{errors.email}</div>
+						{/if}
+					</div>
+
+					<div class="formGroup">
+						<label for="phone">Phone</label>
+						<input
+							use:IMask={maskConfig}
+							type="tel"
+							id="phone"
+							bind:value={formData.phone}
+							oninput={() => handleInput('phone')}
+							required
+						/>
+						{#if errors.phone}
+							<div class="errorMessage" transition:fade>{errors.phone}</div>
+						{/if}
+					</div>
+
+					<div class="formGroup">
+						<label for="message">Message</label>
+						<textarea
+							id="message"
+							bind:value={formData.message}
+							oninput={() => handleInput('message')}
+							rows="6"
+							required
+						></textarea>
+						{#if errors.message}
+							<div class="errorMessage" transition:fade>{errors.message}</div>
+						{/if}
+					</div>
+
+					<button class="submitButton" type="submit" disabled={status.sending}>
+						{status.sending ? 'Sending...' : 'Send Message'}
+					</button>
+
+					{#if status.error}
+						<div class="errorMessage" transition:fade>{status.error}</div>
+					{/if}
+				</form>
+			{/if}
+		</div>
 	</div>
 </dialog>
 
@@ -184,6 +349,19 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	.termsContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+	.instructions {
+		font-size: 0.8rem;
+
+		text-transform: uppercase;
+		font-weight: 600;
+		letter-spacing: 0.05em;
 	}
 
 	.heroContent {
@@ -378,16 +556,21 @@
 		margin: 0 0 0.75rem;
 		color: #374151;
 	}
-	.contactUsModalForm {
+	.contactForm {
 		display: grid;
 		gap: 0.75rem;
 	}
-	.contactUsModalForm label {
+	.formGroup {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.formGroup label {
 		font-weight: 600;
 		font-size: 0.95rem;
 	}
-	.contactUsModalForm input,
-	.contactUsModalForm textarea {
+	.formGroup input,
+	.formGroup textarea {
 		width: 100%;
 		padding: 0.7rem 0.8rem;
 		border: 1px solid #d1d5db;
@@ -397,16 +580,16 @@
 		outline: none;
 		background: #fff;
 	}
-	.contactUsModalForm textarea {
+	.formGroup textarea {
 		min-height: 110px;
 		resize: vertical;
 	}
-	.contactUsModalForm input:focus,
-	.contactUsModalForm textarea:focus {
+	.formGroup input:focus,
+	.formGroup textarea:focus {
 		border-color: #12213e;
 		box-shadow: 0 0 0 3px rgba(18, 33, 62, 0.15);
 	}
-	.contactUsModalButton {
+	.submitButton {
 		margin-top: 0.5rem;
 		appearance: none;
 		border: none;
@@ -417,8 +600,29 @@
 		font-size: 1rem;
 		font-weight: 700;
 		cursor: pointer;
+		transition: background-color 0.2s ease;
 	}
-	.contactUsModalButton:hover {
+	.submitButton:hover {
 		background-color: #0e1b33;
+	}
+	.submitButton:disabled {
+		background-color: #6b7280;
+		cursor: not-allowed;
+	}
+	.errorMessage {
+		color: #dc2626;
+		font-size: 0.875rem;
+		margin-top: 0.25rem;
+	}
+	.successMessage {
+		text-align: center;
+		padding: 2rem;
+	}
+	.successMessage h2 {
+		color: #059669;
+		margin-bottom: 1rem;
+	}
+	.successMessage p {
+		color: #374151;
 	}
 </style>
