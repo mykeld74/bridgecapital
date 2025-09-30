@@ -159,7 +159,7 @@
 			</p>
 			<p class="whoWeAreText">
 				In addition to its core product offerings, Bridge Capital uniquely partners and invests in
-				mall-to-mid-scale firm and advisors. Everyone at Bridge Capital has an interest in the
+				small to mid-scale firms and advisors. Everyone at Bridge Capital has an interest in the
 				success of the associated firms and advisors which produces a unique culture of
 				collaboration that emphasizes growth.
 			</p>
