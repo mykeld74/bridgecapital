@@ -15,7 +15,7 @@
 	<meta name="apple-mobile-web-app-title" content="Bridge Capital" />
 </svelte:head>
 
-<Nav />
+<!-- <Nav /> -->
 
 {@render children()}
 
