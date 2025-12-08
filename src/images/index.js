@@ -1,6 +1,6 @@
 import BridgeCapitalLogo from './BridgeCapitalLogo.webp';
 import Logo from './BridgeCapitalLogo.webp';
-import Skyline from './chicagoSkyline.mp4';
+import Skyline from './chicagoSkylineBcap.mp4';
 import Map from './USMap.svg';
 import Terms from './Terms.svg';
 import chicagoSkylineHero from './chicagoSkylineHero.webp';

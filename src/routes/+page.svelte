@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Skyline, Logo, LogoLetters, Map } from '$images';
-	import { Terms, Cards, LeaderCarousel, Leaders } from '$components';
+	import { Terms, Cards, Leaders } from '$components';
 	import IMask from 'imask';
 	import { fade } from 'svelte/transition';
 
@@ -340,7 +340,7 @@
 			position: absolute;
 			inset: 0;
 			width: 100%;
-			background-color: rgba(0, 0, 0, 0.5);
+			background-color: rgba(0, 0, 0, 0.25);
 			z-index: 1;
 		}
 	}
